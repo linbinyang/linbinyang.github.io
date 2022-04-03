@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en-us" style="max-width: 1000px; margin: auto"><head>
+  <title>Linbin&#39;s Homepage</title>
+
+<meta name="theme-color" content="" />
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<meta name="description" content="Website title" />
+<meta name="author" content="bean" />
+<meta name="generator" content="aafu theme by Darshan in Hugo 0.92.1" />
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">        <link rel="manifest" href="/site.webmanifest">        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#252627">        <link rel="shortcut icon" href="/favicon.ico">        
+
+  <link
+    rel="stylesheet"
+    href="/css/bootstrap/bootstrap.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="//fonts.googleapis.com/css?family=Didact+Gothic%7CRoboto:400%7CRoboto+Mono"
+  />
+  <link rel="stylesheet" href="/css/aafu_ocean.css" />
+  <link rel="stylesheet" href="/css/aafu.css" />
+
+  <script>
+    var themeColor = document.querySelector("meta[name=theme-color]");
+    window.onload = () => {
+      themeColor.content = getComputedStyle(document.body)["background-color"];
+      let defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) {
+        defaultActivePanel.nextElementSibling.style.maxHeight =
+          defaultActivePanel.nextElementSibling.scrollHeight + "px";
+      }
+    };
+    window.onresize = () => {
+      let defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) {
+        defaultActivePanel.nextElementSibling.style.maxHeight =
+          defaultActivePanel.nextElementSibling.scrollHeight + "px";
+      }
+    };
+  </script>
+</head>
+<body class="container">
+    <main style="min-height: calc(100vh - 60px)">
+      
+      <div class="d-flex flex-row row p-2">
+  
+  
+</div>
+
+      
+<div class="ml-auto mr-auto row row-eq-height rounded">
+  <div class="col-md-5 text-center p-2 mt-1">
+    <div class="profile-area rounded text-center position-relative shadow">
+      <div class="d-flex justify-content-center pt-2">
+  <div class="w-100 h-100">
+    <img
+      class="rounded rounded-circle mt-4"
+      src="/images/profile.jpg"
+      alt="bean"
+      style="width: 95%; max-width: 300px;"
+    />
+  </div>
+</div>
+
+      <div class="p-2">
+        <h1 class="mb-0">Linbin YANG</h1>
+<h2 class="mb-0"></h2>
+<h3 class="mb-0">Hangzhou, CHINA</h3>
+<div class="mt-2 d-flex flex-wrap justify-content-center">
+  
+  <div style="height:45px; width:45px;">
+    <a href="https://github.com/linbinyang">
+      <i class="zoomlink mt-1 fab fa-github"></i>
+    </a>
+  </div>
+  
+</div>
+ <footer class=" mt-2 mb-2 ">
+  <span class="markdownify"></span>
+  <span style="font-size:0px;">
+    &middot;
+    <i>
+      <a href="https://github.com/darshanbaral/aafu">
+        aafu
+      </a>
+    </i>
+    by
+    <a href="https://www.darshanbaral.com/">
+      darshan
+    </a>
+  </span>
+</footer>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-md-7 pt-2 mt-3">
+    
+    <h2 class="accordion  active ">
+      
+      <span onclick="expandAccordion(this)" style="cursor: pointer;">
+        <i class="fas fa-user"></i>
+        About Me</span>
+    </h2>
+    <div
+      class="panel overflow-hidden"
+      
+    >
+      <p class="markdownify">
+  I am currently working as SDE at <code>Alibaba</code>. My interests include Data Intensive Application, Federated Learning and Machine Learning. You may contact me through <code>linbinyoung at outlook dot com</code>.
+</p>
+
+    </div>
+    
+    <h2 class="accordion ">
+      
+      <span onclick="expandAccordion(this)" style="cursor: pointer;">
+        <i class="fas fa-graduation-cap"></i>
+        Education</span>
+    </h2>
+    <div
+      class="panel overflow-hidden"
+      
+    >
+      
+
+<h4 style="text-decoration: underline;">M.S. in Computer Science</h4>
+<p >2019.09 - 2020.06 &middot; UC San Diego(3.3/4.0)</p>
+
+
+
+<h4 style="text-decoration: underline;">B.S. in Software Engineering</h4>
+<p >2014.09 - 2018.07 &middot; UESTC(3.93/4.0)</p>
+
+
+
+    </div>
+    
+    <h2 class="accordion ">
+      
+      <span onclick="expandAccordion(this)" style="cursor: pointer;">
+        <i class="fas fa-briefcase"></i>
+        Experiences</span>
+    </h2>
+    <div
+      class="panel overflow-hidden"
+      
+    >
+      
+<h4 style="text-decoration: underline;">Software Engineer</h4>
+<p class="mb-0">
+  2020.06 - <em>Present</em> &middot;  Alibaba 
+</p>
+<p>Developed <code>Fisher</code> to guarantee eventual data consistency of business transactions. Designed <code>SAGA</code> framework by using Spring, <code>Flink</code> and MaxCompute. Greatly reduced labor input cost of dealing with data consistency by <code>80%</code> and limited the time of finding and correcting one data consistency problem to less than <code>1 minute</code>.</p>
+
+
+<h4 style="text-decoration: underline;">SDE Internship</h4>
+<p class="mb-0">
+  2019.07 - 2020.01 &middot; 
+  <a href="https://www.clustar.ai/">Clustar.ai</a>
+  
+</p>
+<p>Responsible for building computing library for federated AI framework by using <code>CUDA</code> and <code>C++</code>. Combined ECDH AES128 algorithm and <code>Intel SGX</code> to secure remote communication and local computing of multiple machines in <code>Horizontal Federated Learning</code></p>
+
+
+
+    </div>
+    
+    <h2 class="accordion ">
+      
+      <span onclick="expandAccordion(this)" style="cursor: pointer;">
+        <i class="fas fa-book"></i>
+        Publications</span>
+    </h2>
+    <div
+      class="panel overflow-hidden"
+      
+    >
+      <p>2020.
+杨林彬,胡水海,陈天健,黄启军,陈瑞钦,陈振南.
+
+
+<a href="https://xueshu.baidu.com/usercenter/paper/show?paperid=1y7w0eb0g8430600962m0x70b7681641&amp;site=xueshu_se">
+  <em>用于联邦学习的计算任务加速处理方法,装置及设备.</em>
+</a>
+
+
+CN202011131111.8.
+</p>
+<p>2020.
+胡水海,杨林彬.
+
+
+<a href="https://www.infoq.cn/article/vms3qhkoldna3ks7ynqj">
+  <em>GPU在联邦机器学习中的探索.</em>
+</a>
+
+
+InfoQ.
+</p>
+
+
+
+    </div>
+    
+    <h2 class="accordion ">
+      
+      <span onclick="expandAccordion(this)" style="cursor: pointer;">
+        <i class=""></i>
+        </span>
+    </h2>
+    <div
+      class="panel overflow-hidden"
+      
+    >
+      
+
+    </div>
+    
+    <h2 class="accordion ">
+      
+      <span onclick="expandAccordion(this)" style="cursor: pointer;">
+        <i class="fas fa-cogs"></i>
+        Skills</span>
+    </h2>
+    <div
+      class="panel overflow-hidden"
+      
+      id="skill-panel"
+      
+    >
+      <script>
+  let skillPanel = document.querySelector("#skill-panel")
+    .previousElementSibling;
+  skillPanel.addEventListener("click", function() {
+    let skillBars = document.querySelectorAll("#skill-percent");
+    skillBars.forEach(elem => {
+      elem.style.width = elem.classList[0];
+    });
+  });
+</script>
+
+<code>Java, Spring</code>
+<div class="w-100 skillbar mt-1 mb-3">
+  <div id="skill-percent" class="90%" style="width: 0;"></div>
+</div>
+
+<code>Flink, Hive, MaxCompute</code>
+<div class="w-100 skillbar mt-1 mb-3">
+  <div id="skill-percent" class="80%" style="width: 0;"></div>
+</div>
+
+<code>C/C&#43;&#43;</code>
+<div class="w-100 skillbar mt-1 mb-3">
+  <div id="skill-percent" class="70%" style="width: 0;"></div>
+</div>
+
+<code>Federated Learning</code>
+<div class="w-100 skillbar mt-1 mb-3">
+  <div id="skill-percent" class="70%" style="width: 0;"></div>
+</div>
+
+
+    </div>
+    
+    <h2 class="accordion ">
+      
+      <span onclick="expandAccordion(this)" style="cursor: pointer;">
+        <i class="fas fa-star"></i>
+        Honor</span>
+    </h2>
+    <div
+      class="panel overflow-hidden"
+      
+      id="skill-panel"
+      
+    >
+      <ul class="pl-0">
+  
+  <li class="list-unstyled mb-2">2020. 1st price in Webank Fintechathon Contest</li>
+  
+  <li class="list-unstyled mb-2">2018. Outstanding Undergraduate Student in Sichuan Province (50/5000)</li>
+  
+  <li class="list-unstyled mb-2">2017. Exchange Student at National Chiao Tung University(Hsinchu, Taiwan)</li>
+  
+  <li class="list-unstyled mb-2">2016. National Scholarship of PRC(1/113)</li>
+  
+</ul>
+
+    </div>
+    
+    <script src="/js/accordion.js"></script>
+  </div>
+</div>
+
+    </main>
+    
+  </body>
+</html>
