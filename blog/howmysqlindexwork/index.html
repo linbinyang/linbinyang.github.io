@@ -90,7 +90,7 @@ Explanation: 9 exists in nums and its index is 4
     }
 };
 </code></pre></div><p>Here try to visualized the whole search process using BST:</p>
-<p><img src="../../static/images/BST.png" alt=""></p>
+<p><img src="../../images/BST.png" alt=""></p>
 <h3 id="2-btb-tree">2. BT(B-Tree)</h3>
 <p>BST is the simplest form of BT. Instead of having a single entry for a single node, BT uses an array of entries for a single node and having reference to child node for each of these entries.</p>
 <p>Say we have the following data on disk:</p>
@@ -149,11 +149,11 @@ Explanation: 9 exists in nums and its index is 4
 </tbody>
 </table>
 <p>If we use BT, this is what data are organized on disk(index on <strong>Saving</strong>):（M=1）</p>
-<p><img src="../../static/images/Btree.png" alt=""></p>
+<p><img src="../../images/Btree.png" alt=""></p>
 <p>Take a look at the BT shown above, for each TreeNode, it contains 2 KeyNodes which are sorted in ascending order. For each KeyNode, it not only stores the key value, but also stores the reference pointed to the actual data on disk.</p>
 <h3 id="3-btb-tree">3. B+T(B+ Tree)</h3>
 <p>If the <strong>Saving</strong> index is constructed using B+T, it is like: （M=1）</p>
-<p><img src="../../static/images/B+Tree.png" alt=""></p>
+<p><img src="../../images/B+Tree.png" alt=""></p>
 <p>There are two kinds of nodes for B+T:</p>
 <ul>
 <li><strong>Index Node</strong>: all “non-leaf” nodes. It stores the key for building index, here is the value of <strong>Saving</strong>.</li>
@@ -172,12 +172,12 @@ Explanation: 9 exists in nums and its index is 4
 <p>The order of the key pair is:</p>
 <pre tabindex="0"><code>[{M, 200},{M, 500},{C, -17},{C, 150},{C, 300},{B, 99},{B, 100}]
 </code></pre><p>So the B+T is: （M=1）</p>
-<p><img src="../../static/images/MultiIndex.png" alt=""></p>
+<p><img src="../../images/MultiIndex.png" alt=""></p>
 <p>From this index structure, we can see why condition on (Bank) AND (Bank, Saving) would work, but not for (Saving)。</p>
 <h3 id="4-reference">4. Reference</h3>
-<p>[1] <a href="https://www.cs.cornell.edu/courses/cs3110/2012sp/recitations/rec25-B-trees/rec25.html">https://www.cs.cornell.edu/courses/cs3110/2012sp/recitations/rec25-B-trees/rec25.html</a>
-[2] <a href="https://vertabelo.com/blog/all-about-indexes-part-2-mysql-index-structure-and-performance/">https://vertabelo.com/blog/all-about-indexes-part-2-mysql-index-structure-and-performance/</a>
-[3] <a href="https://pdfs.semanticscholar.org/0d7b/8b9172a69fa069c9c38b5f01bd37a498563c.pdf">https://pdfs.semanticscholar.org/0d7b/8b9172a69fa069c9c38b5f01bd37a498563c.pdf</a></p>
+<p>[1] <a href="https://www.cs.cornell.edu/courses/cs3110/2012sp/recitations/rec25-B-trees/rec25.html">https://www.cs.cornell.edu/courses/cs3110/2012sp/recitations/rec25-B-trees/rec25.html</a></p>
+<p>[2] <a href="https://vertabelo.com/blog/all-about-indexes-part-2-mysql-index-structure-and-performance/">https://vertabelo.com/blog/all-about-indexes-part-2-mysql-index-structure-and-performance/</a></p>
+<p>[3] <a href="https://pdfs.semanticscholar.org/0d7b/8b9172a69fa069c9c38b5f01bd37a498563c.pdf">https://pdfs.semanticscholar.org/0d7b/8b9172a69fa069c9c38b5f01bd37a498563c.pdf</a></p>
 </div>
 <div class="d-flex flex-row justify-content-around">
   <h3 class="mb-1 mt-1 text-left mr-4">
