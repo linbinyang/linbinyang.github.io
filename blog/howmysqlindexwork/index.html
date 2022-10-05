@@ -69,7 +69,13 @@
   <p class="mb-1">June 30, 2020</p>
   <p>&mdash;</p>
 </div>
-<div class="content"><h3 id="1-bstbinary-search-tree">1. BST(Binary Search Tree)</h3>
+<div class="content"><p>This video really dives deep and explains the concept clearly:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/aZjYr87r1b8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<h3 id="1-start-from-bstbinary-search-tree">1. Start from BST(Binary Search Tree)</h3>
 <p>Consider how to solve <a href="https://leetcode.com/problems/binary-search/">LeetCode 704: Binary Search</a>:</p>
 <pre tabindex="0"><code>Input: nums = [-1,0,3,5,9,12], target = 9
 Output: 4
@@ -92,12 +98,18 @@ Explanation: 9 exists in nums and its index is 4
 </code></pre></div><p>Here try to visualized the whole search process using BST:</p>
 <p><img src="../../images/BST.png" alt=""></p>
 <h3 id="2-btb-tree">2. BT(B-Tree)</h3>
-<p>BST is the simplest form of BT. Instead of having a single entry for a single node, BT uses an array of entries for a single node and having reference to child node for each of these entries.</p>
+<p>BST is the simplest form of BT. Instead of having a single entry for a single node, BT uses an array of entries for a single node and having reference to child node for each of these entries. What&rsquo;s more, to be a BT tree, the following rules must be met:</p>
+<ul>
+<li>Each non-leaf node must have at least ceil(M/2) children.</li>
+<li>Root can have min 2 children</li>
+<li>All leaf nodes must in the same level</li>
+</ul>
+<p>Otherwise, it would be a simple M-way Search tree.</p>
 <p>Say we have the following data on disk:</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:center">No.</th>
+<th style="text-align:center">DiskAdd</th>
 <th style="text-align:right">User</th>
 <th style="text-align:right">Bank</th>
 <th style="text-align:center">Saving</th>
@@ -108,51 +120,75 @@ Explanation: 9 exists in nums and its index is 4
 <td style="text-align:center">0</td>
 <td style="text-align:right">Ross</td>
 <td style="text-align:right">Merchant Bank</td>
-<td style="text-align:center">200</td>
+<td style="text-align:center">50</td>
 </tr>
 <tr>
 <td style="text-align:center">1</td>
 <td style="text-align:right">Joey</td>
 <td style="text-align:right">City Bank</td>
-<td style="text-align:center">-17</td>
+<td style="text-align:center">10</td>
 </tr>
 <tr>
 <td style="text-align:center">2</td>
 <td style="text-align:right">Chandler</td>
 <td style="text-align:right">Chase Bank</td>
-<td style="text-align:center">300</td>
+<td style="text-align:center">60</td>
 </tr>
 <tr>
 <td style="text-align:center">3</td>
 <td style="text-align:right">Monica</td>
 <td style="text-align:right">Bank of America</td>
-<td style="text-align:center">100</td>
+<td style="text-align:center">20</td>
 </tr>
 <tr>
 <td style="text-align:center">4</td>
 <td style="text-align:right">Phoebe</td>
 <td style="text-align:right">Merchant Bank</td>
-<td style="text-align:center">500</td>
+<td style="text-align:center">70</td>
 </tr>
 <tr>
 <td style="text-align:center">5</td>
 <td style="text-align:right">Rachel</td>
 <td style="text-align:right">City Bank</td>
-<td style="text-align:center">150</td>
+<td style="text-align:center">40</td>
 </tr>
 <tr>
 <td style="text-align:center">6</td>
-<td style="text-align:right">Gancer</td>
+<td style="text-align:right">Janice</td>
 <td style="text-align:right">Bank of America</td>
-<td style="text-align:center">99</td>
+<td style="text-align:center">80</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:right">Judy</td>
+<td style="text-align:right">Chase Bank</td>
+<td style="text-align:center">30</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:right">Bean</td>
+<td style="text-align:right">Bank of America</td>
+<td style="text-align:center">35</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:right">David</td>
+<td style="text-align:right">City Bank</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:right">Gill</td>
+<td style="text-align:right">Merchant Bank</td>
+<td style="text-align:center">90</td>
 </tr>
 </tbody>
 </table>
-<p>If we use BT, this is what data are organized on disk(index on <strong>Saving</strong>):（M=1）</p>
+<p>If we use BT, this is what data are organized on disk(index on <strong>Saving</strong>):（M=3）</p>
 <p><img src="../../images/Btree.png" alt=""></p>
 <p>Take a look at the BT shown above, for each TreeNode, it contains 2 KeyNodes which are sorted in ascending order. For each KeyNode, it not only stores the key value, but also stores the reference pointed to the actual data on disk.</p>
 <h3 id="3-btb-tree">3. B+T(B+ Tree)</h3>
-<p>If the <strong>Saving</strong> index is constructed using B+T, it is like: （M=1）</p>
+<p>If the <strong>Saving</strong> index is constructed using B+T, it is like: （M=3）</p>
 <p><img src="../../images/B+Tree.png" alt=""></p>
 <p>There are two kinds of nodes for B+T:</p>
 <ul>
@@ -168,12 +204,12 @@ Explanation: 9 exists in nums and its index is 4
 <li>The advantage of BT is that we can find values that lie close to the root fairly quickly, while in BT we would need to look all the way down to the leaf nodes for any value.</li>
 </ul>
 <h4 id="32-how-multi-column-index-represented-in-bt">3.2. How multi-column index represented in B+T?</h4>
-<p>Suppose we have index on <strong>Bank</strong> and <strong>Saving</strong>. Now we have one Compositive Key (Bank, Saving), the ordering of the Key is the lexicographic ordering.</p>
+<p>Suppose we have index on <strong>User</strong> and <strong>Saving</strong>. Now we have one Compositive Key (User, Saving), the ordering of the Key is the lexicographic ordering.</p>
 <p>The order of the key pair is:</p>
-<pre tabindex="0"><code>[{M, 200},{M, 500},{C, -17},{C, 150},{C, 300},{B, 99},{B, 100}]
-</code></pre><p>So the B+T is: （M=1）</p>
+<pre tabindex="0"><code>[{B, 35},{C, 60},{D, 5},{J, 10},{G, 90},{J, 30},{J, 80},{M, 20},{P, 70},{R, 40},{R, 50}]
+</code></pre><p>So the B+T is: （M=3）</p>
 <p><img src="../../images/MultiIndex.png" alt=""></p>
-<p>From this index structure, we can see why condition on (Bank) AND (Bank, Saving) would work, but not for (Saving).</p>
+<p>From this index structure, we can see why condition on (User) AND (User, Saving) would work, but not for (Saving).</p>
 <h3 id="4-reference">4. Reference</h3>
 <p>[1] <a href="https://www.cs.cornell.edu/courses/cs3110/2012sp/recitations/rec25-B-trees/rec25.html">https://www.cs.cornell.edu/courses/cs3110/2012sp/recitations/rec25-B-trees/rec25.html</a></p>
 <p>[2] <a href="https://vertabelo.com/blog/all-about-indexes-part-2-mysql-index-structure-and-performance/">https://vertabelo.com/blog/all-about-indexes-part-2-mysql-index-structure-and-performance/</a></p>
