@@ -95,8 +95,8 @@ Explanation: 9 exists in nums and its index is 4
         <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">return</span> helper(nums, mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, high, target);
     }
 };
-</code></pre></div><h3 id="2-b-tree">2. B-Tree</h3>
-<p>BST is the simplest form of B-Tree. Instead of having a single entry for each node, B-Tree uses an array of entries for a single node. In general, to be a B-Tree tree, the following rules must be met:</p>
+</code></pre></div><h3 id="2-b-tree">2. B Tree</h3>
+<p>BST is the simplest form of B Tree. Instead of having a single entry for each node, B Tree uses an array of entries for a single node. In general, to be a B Tree tree, the following rules must be met:</p>
 <ul>
 <li>Each non-leaf node must have at least ceil(M/2) children.</li>
 <li>Root can have min 2 children</li>
@@ -182,10 +182,10 @@ Explanation: 9 exists in nums and its index is 4
 </tr>
 </tbody>
 </table>
-<p>If we use B-Tree, this is what data are organized on disk(index on <strong>Saving</strong>):（M=3）</p>
+<p>If we use B Tree, this is what data are organized on disk(index on <strong>Saving</strong>):（M=3）</p>
 <p><img src="../../images/Btree.png" alt=""></p>
-<p>Take a look at the B-Tree shown above, for each TreeNode, B-Tree contains 2 Key Nodes which are sorted in ascending order. For each Key Node, it not only stores the key value, but also stores the reference that points to the actual data on disk.</p>
-<h3 id="3-b-treeb-tree">3. B+ Tree(B+ Tree)</h3>
+<p>Take a look at the B Tree shown above, for each TreeNode, B Tree contains 2 Key Nodes which are sorted in ascending order. For each Key Node, it not only stores the key value, but also stores the reference that points to the actual data on disk.</p>
+<h3 id="3-b-tree">3. B+ Tree</h3>
 <p>If the <strong>Saving</strong> index is constructed using B+ Tree, it is like: （M=3）</p>
 <p>![](../../images/B+ Treeree.png)</p>
 <p>There are two kinds of nodes for B+ Tree:</p>
@@ -194,12 +194,12 @@ Explanation: 9 exists in nums and its index is 4
 <li><strong>Leaf Node</strong>: Not only it stores the key, but also stores the reference of the data on disk.</li>
 </ul>
 <p>What&rsquo;s more, all leaf nodes for B+ Tree are connected one by one using linkedList.</p>
-<h4 id="31-compare-b-tree-and-b-tree">3.1. Compare B-Tree and B+ Tree</h4>
+<h4 id="31-compare-b-tree-and-b-tree">3.1. Compare B Tree and B+ Tree</h4>
 <ul>
-<li>For B+ Tree, The index nodes only store keys, they don’t store pointers to actual rows. The branching factor of B+ Tree tree is larger than B-Tree, so the cost of searching is lower.</li>
+<li>For B+ Tree, The index nodes only store keys, they don’t store pointers to actual rows. The branching factor of B+ Tree tree is larger than B Tree, so the cost of searching is lower.</li>
 <li>Leaf nodes in the B+ Tree are linked, so we can conduct a full scan with only one pass.</li>
 <li>Performing delete operations in a B+ Tree structure is much easier than that in a B-T.</li>
-<li>The advantage of B-Tree is that we can find values that lie close to the root fairly quickly, while in B+ Tree we would need to look all the way down to the leaf nodes for any value.</li>
+<li>The advantage of B Tree is that we can find values that lie close to the root fairly quickly, while in B+ Tree we would need to look all the way down to the leaf nodes for any value.</li>
 </ul>
 <h4 id="32-how-multi-column-index-represented-in-b-tree">3.2. How multi-column index represented in B+ Tree?</h4>
 <p>Suppose we have index on <strong>User</strong> and <strong>Saving</strong>. Now we have one Compositive Key (User, Saving), the ordering of the Key is the lexicographic ordering.</p>
@@ -209,7 +209,7 @@ Explanation: 9 exists in nums and its index is 4
 <p><img src="../../images/MultiIndex.png" alt=""></p>
 <p>From this index structure, we can see why condition on (User) AND (User, Saving) would work, but not for (Saving).</p>
 <h3 id="4-reference">4. Reference</h3>
-<p>[1] <a href="https://www.cs.cornell.edu/courses/cs3110/2012sp/recitations/rec25-B-trees/rec25.html">https://www.cs.cornell.edu/courses/cs3110/2012sp/recitations/rec25-B-trees/rec25.html</a></p>
+<p>[1] <a href="https://www.cs.cornell.edu/courses/cs3110/2012sp/recitations/rec25-B-Trees/rec25.html">https://www.cs.cornell.edu/courses/cs3110/2012sp/recitations/rec25-B-Trees/rec25.html</a></p>
 <p>[2] <a href="https://vertabelo.com/blog/all-about-indexes-part-2-mysql-index-structure-and-performance/">https://vertabelo.com/blog/all-about-indexes-part-2-mysql-index-structure-and-performance/</a></p>
 <p>[3] <a href="https://pdfs.semanticscholar.org/0d7b/8b9172a69fa069c9c38b5f01bd37a498563c.pdf">https://pdfs.semanticscholar.org/0d7b/8b9172a69fa069c9c38b5f01bd37a498563c.pdf</a></p>
 </div>
