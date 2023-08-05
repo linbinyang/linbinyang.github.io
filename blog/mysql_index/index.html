@@ -198,11 +198,11 @@ Explanation: 9 exists in nums and its index is 4
 <ul>
 <li>For B+ Tree, The index nodes only store keys, they don’t store pointers to actual rows. The branching factor of B+ Tree tree is larger than B Tree, so the cost of searching is lower.</li>
 <li>Leaf nodes in the B+ Tree are linked, so we can conduct a full scan with only one pass.</li>
-<li>Performing delete operations in a B+ Tree structure is much easier than that in a B-T.</li>
-<li>The advantage of B Tree is that we can find values that lie close to the root fairly quickly, while in B+ Tree we would need to look all the way down to the leaf nodes for any value.</li>
+<li>Performing delete operations in a B+ Tree structure is much easier than that in a B Tree.</li>
+<li>The advantage of B Tree is that we can find values that lie close to the root fairly quickly, while in B+ Tree we would need to search all the way down to the leaf nodes for any value.</li>
 </ul>
 <h4 id="32-how-multi-column-index-represented-in-b-tree">3.2. How multi-column index represented in B+ Tree?</h4>
-<p>Suppose we have index on <strong>User</strong> and <strong>Saving</strong>. Now we have one Compositive Key (User, Saving), the ordering of the Key is the lexicographic ordering.</p>
+<p>Suppose we have Compositive index on <strong>User</strong> and <strong>Saving</strong>.</p>
 <p>The order of the key pair is:</p>
 <pre tabindex="0"><code>[{B, 35},{C, 60},{D, 5},{J, 10},{G, 90},{J, 30},{J, 80},{M, 20},{P, 70},{R, 40},{R, 50}]
 </code></pre><p>So the B+ Tree is: （M=3）</p>
