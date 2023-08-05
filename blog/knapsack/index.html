@@ -81,19 +81,19 @@
 <li>Restriction(限制)</li>
 <li>Target(目标)</li>
 </ul>
-<p>Here we first define a two-dimension array \(f[i][j]\), where \(i\) means we can randomly pick any elements from goods indexed from 0 to \(i$. \(j\) means the maximum volume of the knapsack. \(f[i][j]\) means the maximum weight value given the <strong>Range</strong> condition \(i\) and <strong>Restriction</strong> condition \(j$, so \(f[i][j]\) is our <strong>Target</strong> of which the type is maximum.</p>
-<p>We know that the final goal of thinking in Dynamic Programming is to write the <strong>State Transition Function</strong>. Since we have already defined our <strong>Target</strong> \(f[i][j]$, we want to explore the connection between \(i\) and \(i - 1\) in <strong>Range</strong> condition.</p>
+<p>Here we first define a two-dimension array \(f[i][j]\), where \(i\) means we can randomly pick any elements from goods indexed from 0 to \(i\). \(j\) means the maximum volume of the knapsack. \(f[i][j]\) means the maximum weight value given the <strong>Range</strong> condition \(i\) and <strong>Restriction</strong> condition \(j\), so \(f[i][j]\) is our <strong>Target</strong> of which the type is maximum.</p>
+<p>We know that the final goal of thinking in Dynamic Programming is to write the <strong>State Transition Function</strong>. Since we have already defined our <strong>Target</strong> \(f[i][j]\), we want to explore the connection between \(i\) and \(i - 1\) in <strong>Range</strong> condition.</p>
 <p>According to the question, we can either pick or disregard the \(i^{th}\) good and that is exactly why we classify this kind of knapsack problem as 01-knapsack.</p>
 <p>if we take \(f[i][j]\) as one set and the set can be split into two half by whether we pick \(i^{th}\) good or not.</p>
 <p><img src="../../images/set1.png" alt=""></p>
-<p>According the definition of <strong>Target</strong>, the right half of the set \(f[i][j]\) is \(f[i-1][j]$.</p>
-<p>All combinations in the left half have one common feature: they all contains \(i^{th}\) good. So we can further translate the left half as \(f[i-1][j - v_{i}] + w_{i}$. How to understand this state? Well, since we know that for the left half, the knapsack is sure to contains \(i^{th}\) goods, so our goal is to find the maximum weight when the \(i^{th}\) good is eliminated from the knapsack, so the range condition become \(i-1\) and the restriction become \(j - v_{i}\) (<strong>we must leave enough room for \(i^{th}\) good</strong>). In sum, the set \(f[i][j]\) becomes:</p>
+<p>According the definition of <strong>Target</strong>, the right half of the set \(f[i][j]\) is \(f[i-1][j]\).</p>
+<p>All combinations in the left half have one common feature: they all contains \(i^{th}\) good. So we can further translate the left half as \(f[i-1][j - v_{i}] + w_{i}\). How to understand this state? Well, since we know that for the left half, the knapsack is sure to contains \(i^{th}\) goods, so our goal is to find the maximum weight when the \(i^{th}\) good is eliminated from the knapsack, so the range condition become \(i-1\) and the restriction become \(j - v_{i}\) (<strong>we must leave enough room for \(i^{th}\) good</strong>). In sum, the set \(f[i][j]\) becomes:</p>
 <p><img src="../../images/set2.png" alt=""></p>
 <p>Now we have already deduced the State Transition Function. Now it is time to code. But before we start, we need to check some corner cases:</p>
 <ul>
 <li>i = 0. Under this <strong>Range</strong> condition, we do not have any goods to pick. so \(f[0][j]\) would be 0.</li>
 <li>j = 0. Under this <strong>Restriction</strong> condition, the volume of the knapsack is zero, so \(f[i][0]\) would be 0.</li>
-<li>\(j &lt; v_i$, this condition means we cannot pick \(i$, so \(f[i][j] = f[i-1][j]$</li>
+<li>\(j &lt; v_i\), this condition means we cannot pick \(i\), so \(f[i][j] = f[i-1][j]\)</li>
 </ul>
 <p><img src="../../images/array1.png" alt=""></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
@@ -126,7 +126,7 @@
      cout <span style="color:#f92672">&lt;&lt;</span> f[n][v] <span style="color:#f92672">&lt;&lt;</span> endl;
      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre></div><p>The space complexity is \(O(n^2)\) and time complexity is \(O(n^2)$.</p>
+</code></pre></div><p>The space complexity is \(O(n^2)\) and time complexity is \(O(n^2)\).</p>
 <p>There are space for optimization. When we compute \(f\) on \(i^{th}\) layer, we only need results from \({i-1}^{th}\) layer. So we do not need a two-dimension array to record results for every level.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
@@ -155,9 +155,9 @@
      cout <span style="color:#f92672">&lt;&lt;</span> f[v] <span style="color:#f92672">&lt;&lt;</span> endl;
      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre></div><p>Why this would work? When we compute \(f[j]$, we need \(f[j]\) and \(f[j - v_i]$, they have already been computed on the last traversal.</p>
+</code></pre></div><p>Why this would work? When we compute \(f[j]\), we need \(f[j]\) and \(f[j - v_i]\), they have already been computed on the last traversal.</p>
 <p><img src="../../images/array2.png" alt=""></p>
-<p>After this optimization, the space complexity becomes \(O(n)$.</p>
+<p>After this optimization, the space complexity becomes \(O(n)\).</p>
 <p>Now let&rsquo;s try one leetcode question:</p>
 <pre tabindex="0"><code>Given an integer array nums, return true if you can partition the array into two subsets such that the sum of the elements in both subsets is equal or false otherwise.
 
@@ -170,12 +170,12 @@ Explanation: The array can be partitioned as [1, 5, 5] and [11].
 <p>It can be simplified as if we could find a subset of which the sum is equal to \(0-\frac{SUM}{2}\) where \(SUM\) represents sum of nums.</p>
 <p>This is a 01-knapsack problem:</p>
 <ul>
-<li><strong>Range</strong>: i from \(0\) to \(n$, where \(n\) is the size of nums</li>
-<li><strong>Restriction</strong>: j from \(0\) to \(\frac{SUM}{2}$</li>
-<li><strong>Target</strong>: \(f[i][j]$, and the type is equal</li>
+<li><strong>Range</strong>: i from \(0\) to \(n\), where \(n\) is the size of nums</li>
+<li><strong>Restriction</strong>: j from \(0\) to \(\frac{SUM}{2}\)</li>
+<li><strong>Target</strong>: \(f[i][j]\), and the type is equal</li>
 </ul>
 <p>We deduce the final State Transition Function is:</p>
-<p>$$f[i][j] = f[i-1][j] || f[i-1][j - nums[i]]$$</p>
+<p>$$f[i][j] = f[i-1][j] \text{ or } f[i-1][j - nums[i]]$$</p>
 <p>The final code is:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
 <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
