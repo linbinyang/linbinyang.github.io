@@ -6,7 +6,17 @@
     <description>Recent content in Welcome on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://linbinyang.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://linbinyang.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>knapsack problem</title>
+      <link>https://linbinyang.github.io/blog/knapsack/</link>
+      <pubDate>Sat, 05 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://linbinyang.github.io/blog/knapsack/</guid>
+      <description>01 Knapsack 有 N 件物品和一个容量是 V 的背包。每件物品只能使用一次。 第 i 件物品的体积是 vi，价值是 wi。 求解将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。输出最大价值。 To solve this problem using Dynamic Programming, there are a few things we need to clarify before we dive deep:
+ Range(范围) Restriction(限制) Target(目标)  Here we first define a two-dimension array $f[i][j]$, where $i$ means we can randomly pick any elements from goods indexed from 0 to $i$. $j$ means the maximum volume of the knapsack. $f[i][j]$ means the maximum weight value given the Range condition $i$ and Restriction condition $j$, so $f[i][j]$ is our Target of which the type is maximum.</description>
+    </item>
+    
     <item>
       <title>EP-梦中的你-2023全国巡演杭州站</title>
       <link>https://linbinyang.github.io/blog/escapse_plan_show/</link>

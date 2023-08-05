@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en-us" style="max-width: 1000px; margin: auto"><head>
+  <title>Linbin&#39;s Homepage</title>
+
+<meta name="theme-color" content="" />
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<meta name="description" content="Website title" />
+<meta name="author" content="bean" />
+<meta name="generator" content="aafu theme by Darshan in Hugo 0.92.1" />
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">        <link rel="manifest" href="/site.webmanifest">        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#252627">        <link rel="shortcut icon" href="/favicon.ico">        
+
+  <link
+    rel="stylesheet"
+    href="/css/bootstrap/bootstrap.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="//fonts.googleapis.com/css?family=Didact+Gothic%7CRoboto:400%7CRoboto+Mono"
+  />
+  <link rel="stylesheet" href="/css/aafu_ocean.css" />
+  <link rel="stylesheet" href="/css/aafu.css" />
+
+  <script>
+    var themeColor = document.querySelector("meta[name=theme-color]");
+    window.onload = () => {
+      themeColor.content = getComputedStyle(document.body)["background-color"];
+      let defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) {
+        defaultActivePanel.nextElementSibling.style.maxHeight =
+          defaultActivePanel.nextElementSibling.scrollHeight + "px";
+      }
+    };
+    window.onresize = () => {
+      let defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) {
+        defaultActivePanel.nextElementSibling.style.maxHeight =
+          defaultActivePanel.nextElementSibling.scrollHeight + "px";
+      }
+    };
+  </script>
+</head>
+<body class="container">
+    <main style="min-height: calc(100vh - 60px)">
+      
+      <div class="d-flex flex-row row p-2">
+  <h3 class="main-menu mr-3">
+    <a href="https://linbinyang.github.io/">MAIN</a>
+  </h3> 
+  <h3 class="main-menu mr-3">
+    <a href="/blog">POST</a>
+  </h3>
+</div>
+
+      
+<div class="mb-3">
+  <h1 class="top-h1" style="font-size: 2.75em">knapsack problem</h1>
+  <p class="mb-1">August 5, 2023</p>
+  <p>&mdash;</p>
+</div>
+<div class="content"><h3 id="01-knapsack">01 Knapsack</h3>
+<pre tabindex="0"><code>有 N 件物品和一个容量是 V 的背包。每件物品只能使用一次。
+
+第 i 件物品的体积是 vi，价值是 wi。
+
+求解将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。输出最大价值。
+</code></pre><p>To solve this problem using Dynamic Programming, there are a few things we need to clarify before we dive deep:</p>
+<ul>
+<li>Range(范围)</li>
+<li>Restriction(限制)</li>
+<li>Target(目标)</li>
+</ul>
+<p>Here we first define a two-dimension array $f[i][j]$, where $i$ means we can randomly pick any elements from goods indexed from 0 to $i$. $j$ means the maximum volume of the knapsack. $f[i][j]$ means the maximum weight value given the <strong>Range</strong> condition $i$ and <strong>Restriction</strong> condition $j$, so $f[i][j]$ is our <strong>Target</strong> of which the type is maximum.</p>
+<p>We know that the final goal of thinking in Dynamic Programming is to write the <strong>State Transition Function</strong>. Since we have already defined our <strong>Target</strong> $f[i][j]$, we want to explore the connection between $i$ and $i - 1$ in <strong>Range</strong> condition.</p>
+<p>According to the question, we can either pick or disregard the $i^{th}$ good and that is exactly why we classify this kind of knapsack problem as 01-knapsack.</p>
+<p>if we take $f[i][j]$ as one set and the set can be split into two half by whether we pick $i^{th}$ good or not.</p>
+<p><img src="../../static/images/set1.png" alt=""></p>
+<p>According the definition of <strong>Target</strong>, the right half of the set $f[i][j]$ is $f[i-1][j]$.</p>
+<p>All combinations in the left half have one common feature: they all contains $i^{th}$ good. So we can further translate the left half as $f[i-1][j - v_{i}] + w_{i}$. How to understand this state? Well, since we know that for the left half, the knapsack is sure to contains $i^{th}$ goods, so our goal is to find the maximum weight when the $i^{th}$ good is eliminated from the knapsack, so the range condition become $i-1$ and the restriction become $j - v_{i}$ (<strong>we must leave enough room for $i^{th}$ good</strong>). In sum, the set $f[i][j]$ becomes:</p>
+<p><img src="../../static/images/set2.png" alt=""></p>
+<p>Now we have already deduced the State Transition Function. Now it is time to code. But before we start, we need to check some corner cases:</p>
+<ul>
+<li>i = 0. Under this <strong>Range</strong> condition, we do not have any goods to pick. so $f[0][j]$ would be 0.</li>
+<li>j = 0. Under this <strong>Restriction</strong> condition, the volume of the knapsack is zero, so $f[i][0]$ would be 0.</li>
+<li>$j &lt; v_i$, this condition means we cannot pick $i$, so $f[i][j] = f[i-1][j]$</li>
+</ul>
+<p><img src="../../static/images/array1.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> N <span style="color:#f92672">=</span> <span style="color:#ae81ff">1001</span>;
+
+<span style="color:#66d9ef">int</span> f[N][N];
+
+<span style="color:#66d9ef">int</span> V[N], W[N];
+
+<span style="color:#66d9ef">int</span> n, v;
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>){
+     cin <span style="color:#f92672">&gt;&gt;</span> n <span style="color:#f92672">&gt;&gt;</span> v;
+     
+     <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i <span style="color:#f92672">++</span>){
+         cin <span style="color:#f92672">&gt;&gt;</span> V[i] <span style="color:#f92672">&gt;&gt;</span> W[i];
+     }
+     
+     <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i <span style="color:#f92672">++</span>){
+         <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;=</span> v; j <span style="color:#f92672">++</span>){
+             f[i][j] <span style="color:#f92672">=</span> f[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j];
+             <span style="color:#66d9ef">if</span> (j <span style="color:#f92672">&gt;=</span> V[i]){
+                 f[i][j] <span style="color:#f92672">=</span> max(f[i][j], f[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][j <span style="color:#f92672">-</span> V[i]] <span style="color:#f92672">+</span> W[i]);
+             }
+         }
+     }
+     cout <span style="color:#f92672">&lt;&lt;</span> f[n][v] <span style="color:#f92672">&lt;&lt;</span> endl;
+     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>The space complexity is $O(n^2)$ and time complexity is $O(n^2)$.</p>
+<p>There are space for optimization. When we compute $f$ on $i^{th}$ layer, we only need results from ${i-1}^{th}$ layer. So we do not need a two-dimension array to record results for every level.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> N <span style="color:#f92672">=</span> <span style="color:#ae81ff">1001</span>;
+
+<span style="color:#66d9ef">int</span> f[N];
+
+<span style="color:#66d9ef">int</span> V[N], W[N];
+
+<span style="color:#66d9ef">int</span> n, v;
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>){
+     cin <span style="color:#f92672">&gt;&gt;</span> n <span style="color:#f92672">&gt;&gt;</span> v;
+     
+     <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i <span style="color:#f92672">++</span>){
+         cin <span style="color:#f92672">&gt;&gt;</span> V[i] <span style="color:#f92672">&gt;&gt;</span> W[i];
+     }
+     
+     <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i <span style="color:#f92672">++</span>){
+         <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> v; j <span style="color:#f92672">&gt;=</span> V[i]; j <span style="color:#f92672">--</span>){
+             f[j] <span style="color:#f92672">=</span> max(f[j], f[j <span style="color:#f92672">-</span> V[i]] <span style="color:#f92672">+</span> W[i]);
+         }
+     }
+     cout <span style="color:#f92672">&lt;&lt;</span> f[v] <span style="color:#f92672">&lt;&lt;</span> endl;
+     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>Why this would work? When we compute $f[j]$, we need $f[j]$ and $f[j - v_i]$, they have already been computed on the last traversal.</p>
+<p><img src="../../static/images/array2.png" alt=""></p>
+<p>After this optimization, the space complexity becomes $O(n)$.</p>
+<p>Now let&rsquo;s try one leetcode question:</p>
+<pre tabindex="0"><code>Given an integer array nums, return true if you can partition the array into two subsets such that the sum of the elements in both subsets is equal or false otherwise.
+
+Example:
+
+Input: nums = [1,5,11,5]
+Output: true
+Explanation: The array can be partitioned as [1, 5, 5] and [11].
+</code></pre><p>This problem asks us to check the array could be split into two subsets and the sum of elements in both subset is equal.</p>
+<p>It can be simplified as if we could find a subset of which the sum is equal to $0-\frac{SUM}{2}$ where $SUM$ represents sum of nums.</p>
+<p>This is a 01-knapsack problem:</p>
+<ul>
+<li><strong>Range</strong>: i from $0$ to $n$, where $n$ is the size of nums</li>
+<li><strong>Restriction</strong>: j from $0$ to $\frac{SUM}{2}$</li>
+<li><strong>Target</strong>: $f[i][j]$, and the type is equal</li>
+</ul>
+<p>We deduce the final State Transition Function is:</p>
+<p>$$f[i][j] = f[i-1][j] || f[i-1][j - nums[i]]$$</p>
+<p>The final code is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">bool</span> canPartition(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> nums) {
+        <span style="color:#66d9ef">int</span> total <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> nums.size(); i <span style="color:#f92672">++</span>){
+            total <span style="color:#f92672">+=</span> nums[i];
+        }
+        <span style="color:#66d9ef">if</span> (total <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>){
+            <span style="color:#66d9ef">return</span> false;
+        }
+        <span style="color:#66d9ef">int</span> half_sum <span style="color:#f92672">=</span> total <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+        <span style="color:#66d9ef">bool</span> f[half_sum <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];
+        memset(f, false, (half_sum <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">bool</span>));
+        f[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> true;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> nums.size(); i <span style="color:#f92672">++</span>){
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> half_sum; j <span style="color:#f92672">&gt;=</span> nums[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]; j <span style="color:#f92672">--</span>){
+                f[j] <span style="color:#f92672">=</span> f[j] <span style="color:#f92672">||</span> (f[j <span style="color:#f92672">-</span> nums[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]]);
+            }
+        }
+        <span style="color:#66d9ef">return</span> f[half_sum];
+    }
+};
+</code></pre></div></div>
+<div class="d-flex flex-row justify-content-around">
+  <h3 class="mb-1 mt-1 text-left mr-4">
+    
+    <a
+      href="/blog/escapse_plan_show/"
+      title="EP-梦中的你-2023全国巡演杭州站"
+    >
+      <i class="nav-menu fas fa-chevron-circle-left"></i>
+    </a>
+    
+  </h3>
+  <h3 class="mb-1 mt-1 text-left ml-4">
+    
+    <i class="nav-menu-disabled fas fa-chevron-circle-right"></i>
+    
+  </h3>
+</div>
+
+
+    </main>
+    
+    <footer class=" mt-2 mb-4 text-center ">
+  <span class="markdownify"></span>
+  <span style="font-size:0px;">
+    &middot;
+    <i>
+      <a href="https://github.com/darshanbaral/aafu">
+        aafu
+      </a>
+    </i>
+    by
+    <a href="https://www.darshanbaral.com/">
+      darshan
+    </a>
+  </span>
+</footer>
+
+    
+  </body>
+</html>
