@@ -217,7 +217,7 @@ Explanation: The array can be partitioned as [1, 5, 5] and [11].
 <p>The original one:</p>
 <p>$$f[i][j] = max(f[i-1][j], f[i-1][j - v_i] + w_i,&hellip;,f[i-1][j - n<em>v_i] + n</em>w_i) $$</p>
 <p>After initializing \(j\) to \(j - v_i\):</p>
-<p>$$f[i][j - v_i] = max(f[i-1][j-v_i], f[i-1][j-2<em>v_i]) + w_i, &hellip;,f[i-1][j - n</em>v_i] + n*w_i$$</p>
+<p>$$f[i][j - v_i] = max(f[i-1][j-v_i], f[i-1][j-2<em>v_i]) + w_i, &hellip;,f[i-1][j - n</em>v_i] + n*w_i)$$</p>
 <p>We can see the relation between the two expression shown above:</p>
 <p>$$f[i][j] = max(f[i-1][j], f[i][j-v_i] + w_i)$$</p>
 <p>Try not to understand the meaning behind this expression. The most important thing is to know how this State Transition Function was derived from the solution to 01 Knapsack.</p>
