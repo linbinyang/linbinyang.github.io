@@ -214,9 +214,6 @@ Explanation: The array can be partitioned as [1, 5, 5] and [11].
 <p>For unbounded knapsack, we should consider how many \(i^{th}\) good we should pick, from \(0\) to \(n\), where \(n * v_i &lt;= j\).</p>
 <p><img src="../../images/set3.png" alt=""></p>
 <p>This expression is interesting, what will happen if we initialize \(j\) to \(j - v_i\)?</p>
-<p>The original one:</p>
-<p>$$f[i][j] = max(f[i-1][j], f[i-1][j - v_i] + w_i,&hellip;,f[i-1][j - n<em>v_i] + n</em>w_i) $$</p>
-<p>After initializing \(j\) to \(j - v_i\):</p>
 <p>$$f[i][j - v_i] = max(f[i-1][j-v_i], f[i-1][j-2<em>v_i]) + w_i, &hellip;,f[i-1][j - n</em>v_i] + n*w_i)$$</p>
 <p>We can see the relation between the two expression shown above:</p>
 <p>$$f[i][j] = max(f[i-1][j], f[i][j-v_i] + w_i)$$</p>
