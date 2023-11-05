@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Machine Learning on </title>
+    <link>https://linbinyang.github.io/tags/machine-learning/</link>
+    <description>Recent content in Machine Learning on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 29 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://linbinyang.github.io/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Supervised Learning</title>
+      <link>https://linbinyang.github.io/blog/ml1/</link>
+      <pubDate>Sun, 29 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://linbinyang.github.io/blog/ml1/</guid>
+      <description>Definition of Machine Learning quoted from Wikipedia
+ Machine Learing (ML) is a field of study in artificial intelligence concerned with the development and study of statistical algorithms that can effectively generalize and thus perform tasks without explicit instructions.
+ Generally speaking, Machine Learning can be devided into two broad categories and they are
+  Supervised Learning
+ The algorithm is given certain inputs and their corresponding labels and try to learning a general rule that maps inputs to outputs.</description>
+    </item>
+    
+  </channel>
+</rss>

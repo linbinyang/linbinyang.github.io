@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en-us" style="max-width: 1000px; margin: auto"><head>
+  <title>Linbin&#39;s Homepage</title>
+
+<meta name="theme-color" content="" />
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<meta name="description" content="Website title" />
+<meta name="author" content="bean" />
+<meta name="generator" content="aafu theme by Darshan in Hugo 0.92.1" />
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">        <link rel="manifest" href="/site.webmanifest">        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#252627">        <link rel="shortcut icon" href="/favicon.ico">        
+
+  <link
+    rel="stylesheet"
+    href="/css/bootstrap/bootstrap.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="//fonts.googleapis.com/css?family=Didact+Gothic%7CRoboto:400%7CRoboto+Mono"
+  />
+  <link rel="stylesheet" href="/css/aafu_ocean.css" />
+  <link rel="stylesheet" href="/css/aafu.css" />
+
+  <script>
+    var themeColor = document.querySelector("meta[name=theme-color]");
+    window.onload = () => {
+      themeColor.content = getComputedStyle(document.body)["background-color"];
+      let defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) {
+        defaultActivePanel.nextElementSibling.style.maxHeight =
+          defaultActivePanel.nextElementSibling.scrollHeight + "px";
+      }
+    };
+    window.onresize = () => {
+      let defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) {
+        defaultActivePanel.nextElementSibling.style.maxHeight =
+          defaultActivePanel.nextElementSibling.scrollHeight + "px";
+      }
+    };
+  </script>
+</head>
+<body class="container">
+    <main style="min-height: calc(100vh - 60px)">
+      
+      <div class="d-flex flex-row row p-2">
+  <h3 class="main-menu mr-3">
+    <a href="https://linbinyang.github.io/">MAIN</a>
+  </h3> 
+  <h3 class="main-menu mr-3">
+    <a href="/blog">POST</a>
+  </h3>
+</div>
+
+      
+<div class="mb-3">
+  <h1 class="top-h1" style="font-size: 2.75em">Supervised Learning</h1>
+  <p class="mb-1">October 29, 2023</p>
+  <p>&mdash;</p>
+</div>
+<div class="content"><p>Definition of Machine Learning quoted from Wikipedia</p>
+<blockquote>
+<p><em><strong>Machine Learing (ML)</strong> is a field of study in artificial intelligence concerned with the development and study of statistical algorithms that can effectively generalize and thus perform tasks without explicit instructions</em>.</p>
+</blockquote>
+<p>Generally speaking, Machine Learning can be devided into two broad categories and they are</p>
+<ol>
+<li>
+<p><strong>Supervised Learning</strong></p>
+<blockquote>
+<p>The algorithm is given certain inputs and their corresponding labels and try to learning a general rule that maps inputs to outputs.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Unsupervised Learning</strong></p>
+<blockquote>
+<p>No labels are given, leaving it on its own to find structure in its input, like discovering hidden patterns in data.</p>
+</blockquote>
+</li>
+</ol>
+<p>I would start from Linear Regression and Logistic Regression.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>COMPARSION</strong></th>
+<th><strong>LINEAR REGRESSION</strong></th>
+<th><strong>LOGISTIC REGRESSION</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Basic</td>
+<td><em>The data is modelled using a straight line. Use <strong>Least Square Error</strong> to compute optimal.</em>  $$J(w,b) = \frac{1}{2m} \sum\limits_{i=1}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2 $$ <em>where</em> $$f_{w,b}(x^{(i)}) = wx^{(i)} + b$$</td>
+<td><em>The probability of some obtained event that is represented as a linear function of a combination of predictor variables.</em>  Add sigmod curve to linear regression and compute optimal using <strong>maximum likelihood</strong>. $$f_{w,b}(x^{(i)}) = sigmoid(wx^{(i)} + b)$$ $$\begin{aligned} J(f_{\mathbf{w},b}(\mathbf{x}^{(i)}), y^{(i)}) = \begin{cases} - \log\left(f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right) &amp; \text{if $y^{(i)}=1$}\ - \log \left( 1 - f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right) &amp; \text{if $y^{(i)}=0$} \end{cases} \end{aligned}$$</td>
+</tr>
+<tr>
+<td style="text-align:center">Linear relationship between dependent and independent varibales</td>
+<td><em>Is Required</em></td>
+<td><em>Not Required</em></td>
+</tr>
+</tbody>
+</table>
+<p><!-- raw HTML omitted -->Strong correlation between independent variables is not desirable not only in Logistic Regression but also in Linear Regression. Some common methods like <strong>Principle Component Analysis</strong> could work to solve such problem.<!-- raw HTML omitted --></p>
+<h3 id="gradient-descent">Gradient Descent</h3>
+<p><!-- raw HTML omitted -->We adopt Gradient Desent Method to find the optimal solution given the two loss functions in the table above. Note that the two loss functions are convex, this implies that there are no local optimal(minimal or maximal), the gradient will always converges to global minimum<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<ul>
+<li>Linear Regression</li>
+</ul>
+<p>$$\frac{d}{dw}J(w, b) = \frac{1}{2m}\sum_{i=1}^{m-1} 2*(f_{w,b}(x^{(i)}) - y^{(i)}) *\frac{d}{dw} f_{w,b}(x^{(i)})$$</p>
+<p>$$=\frac{1}{m}\sum_{i=1}^{m-1}(f_{w,b}(x^{(i)}) - y^{(i)}) * x^{(i)}$$</p>
+<p>$$\frac{d}{db}J(w, b) = \frac{1}{2m}\sum_{i=1}^{m-1} 2*(f_{w,b}(x^{(i)}) - y^{(i)}) *\frac{d}{db} f_{w,b}(x^{(i)})$$</p>
+<p>$$=\frac{1}{m}\sum_{i=1}^{m-1}(f_{w,b}(x^{(i)}) - y^{(i)})$$</p>
+<ul>
+<li>Logistic Regression</li>
+</ul>
+<p>$$J(w,b) = \frac{1}{m}\sum_{i=0}^{m-1}-y*log(f_{w,b}(x^{(i)}))-(1-y) * log(1-f_{w,b}(x^{(i)}))$$</p>
+<p>When $y = 1, f_{w,b}(x^{(i)}) \rightarrow 1, J(w, b) \rightarrow 0 $</p>
+<p>When $y = 1, f_{w,b}(x^{(i)}) \rightarrow 0, J(w, b) \rightarrow \infty $</p>
+<p>When $y = 0, f_{w,b}(x^{(i)}) \rightarrow 1, J(w, b) \rightarrow \infty $</p>
+<p>When $y = 0, f_{w,b}(x^{(i)}) \rightarrow 0, J(w, b) \rightarrow 0 $</p>
+<p>$$\frac{d}{dw}J(w, b) = \frac{1}{m}\sum_{i=0}^{m-1}-y*\frac{1}{f_{w,b}(x^{(i)})} * \frac{df}{dw} +(1-y)*\frac{1}{1-f_{w,b}(x^{(i)})} * \frac{df}{dw}$$</p>
+<p>$$= \frac{1}{m}\sum_{i=0}^{m-1}-y*\frac{1}{f} * f*(1-f)<em>(-x^{(i)}) + (1-y)</em>\frac{1}{1-f} * f*(1-f)*(-x^{(i)})$$</p>
+<p>$$= -\frac{1}{m}\sum_{i=0}^{m-1} f*x^{(i)} - x^{(i)}*y$$</p>
+<p>$$\frac{d}{db}J(w, b) = \frac{1}{m}\sum_{i=0}^{m-1}-y*\frac{1}{f_{w,b}(x^{(i)})} * \frac{df}{db} +(1-y)*\frac{1}{1-f_{w,b}(x^{(i)})} * \frac{df}{db}$$</p>
+<p>$$= \frac{1}{m}\sum_{i=0}^{m-1}-y*\frac{1}{f} * f*(1-f)<em>(-1) + (1-y)</em>\frac{1}{1-f} * f*(1-f)*(-1)$$</p>
+<p>$$ = \frac{1}{m} \sum_{i=0}^{m-1} y - f$$</p>
+<!-- raw HTML omitted -->
+<p>When training, we first start with randomized $w$ and $b$ and for each iteration we update the $w$,$b$ with learing rate $\alpha$:</p>
+<p>$$w = w - \alpha * \frac{dJ}{dw}$$</p>
+<p>$$b = b - \alpha * \frac{dJ}{db}$$</p>
+<p>until converging to the global minimum. The methods is called <strong>Batch Gradient Descent</strong>, however when the size of dataset reaches to a certain level, the cost of computing gradient descent would be too high. So we here we could use <strong>Stochastic Gradient Descent</strong>, which means instead of using the whole dataset to compute, we randomly pick a subset to do gradient computing for each iterration. <!-- raw HTML omitted -->Note that the size of the subset is important, if the size is too small, it would be hard for the model to converge.<!-- raw HTML omitted --></p>
+<h3 id="how-to-avoid-overfitting">How to avoid overfitting</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>Bias &amp; Variance</strong></th>
+<th><strong>Low Variance</strong></th>
+<th><strong>High Variance</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">High Bias</td>
+<td><strong>Underfitting</strong></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">Low Bias</td>
+<td>Good Model</td>
+<td><strong>Overfitting</strong></td>
+</tr>
+</tbody>
+</table>
+<p>In machine learning, feature scaling refers to putting the feature values into the same range. Scaling is extremely important for the algorithms like logistic regression, because somehow it could help the algorthm to quickly capture the feature of dataset and hopefully make gradient descent process run faster. On the other hand, some rule-based algorithms like decision trees are not affected by feature scaling.</p>
+<p>In <strong>normalization</strong>, we map the minimum feature value to 0 and the maximum to 1. Hence, the feature values are mapped into the $[0,1]$ range:
+$$z = \frac{x - min(x)}{max(x) - min(x)}$$</p>
+<p>In <strong>standardization</strong>, we don&rsquo;t enforce the data into a definite range. Instead, we transform to have a mean of 0 and a standard deviation of 1:</p>
+<p>$$z = \frac{x - \mu}{\sigma}$$</p>
+<p>It not only helps with scaling but also centralizes the data.</p>
+<p>Another approach is to add penalty to the cofficients in loss function. In other words, reduce the effects of certain cofficient.</p>
+<p>Generally there are two ways:</p>
+<ol>
+<li>Lasso Regression(L1-norm)</li>
+</ol>
+<p>$$loss = loss + \lambda * \sum_{i=0}^{n}|w_i|$$</p>
+<ol>
+<li>Ridge Regression(L2-norm)</li>
+</ol>
+<p>$$loss = loss + \lambda * \sum_{i=0}^{n}w_i^2$$</p>
+<p>Lasso features inbuilt feature selection. But we cannot use lasso to do feature selection for sure.</p>
+</div>
+<div class="d-flex flex-row justify-content-around">
+  <h3 class="mb-1 mt-1 text-left mr-4">
+    
+    <a
+      href="/blog/knapsack/"
+      title="Knapsack Problem"
+    >
+      <i class="nav-menu fas fa-chevron-circle-left"></i>
+    </a>
+    
+  </h3>
+  <h3 class="mb-1 mt-1 text-left ml-4">
+    
+    <i class="nav-menu-disabled fas fa-chevron-circle-right"></i>
+    
+  </h3>
+</div>
+
+
+    </main>
+    
+    <footer class=" mt-2 mb-4 text-center ">
+  <span class="markdownify"></span>
+  <span style="font-size:0px;">
+    &middot;
+    <i>
+      <a href="https://github.com/darshanbaral/aafu">
+        aafu
+      </a>
+    </i>
+    by
+    <a href="https://www.darshanbaral.com/">
+      darshan
+    </a>
+  </span>
+</footer>
+
+    
+  </body>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+</html>
