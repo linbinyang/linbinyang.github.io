@@ -125,10 +125,6 @@
 <li>Logistic Regression</li>
 </ul>
 <p>$$J(w,b) = \frac{1}{m}\sum_{i=0}^{m-1}-y*log(f_{w,b}(x^{(i)}))-(1-y) * log(1-f_{w,b}(x^{(i)}))$$</p>
-<p>When $y = 1, f_{w,b}(x^{(i)}) \rightarrow 1, J(w, b) \rightarrow 0 $</p>
-<p>When $y = 1, f_{w,b}(x^{(i)}) \rightarrow 0, J(w, b) \rightarrow \infty $</p>
-<p>When $y = 0, f_{w,b}(x^{(i)}) \rightarrow 1, J(w, b) \rightarrow \infty $</p>
-<p>When $y = 0, f_{w,b}(x^{(i)}) \rightarrow 0, J(w, b) \rightarrow 0 $</p>
 <p>$$\frac{d}{dw}J(w, b) = \frac{1}{m}\sum_{i=0}^{m-1}-y*\frac{1}{f_{w,b}(x^{(i)})} * \frac{df}{dw} +(1-y)*\frac{1}{1-f_{w,b}(x^{(i)})} * \frac{df}{dw}$$</p>
 <p>$$= -\frac{1}{m}\sum_{i=0}^{m-1} f*x^{(i)} - x^{(i)}*y$$</p>
 <p>$$\frac{d}{db}J(w, b) = \frac{1}{m}\sum_{i=0}^{m-1}-y*\frac{1}{f_{w,b}(x^{(i)})} * \frac{df}{db} +(1-y)*\frac{1}{1-f_{w,b}(x^{(i)})} * \frac{df}{db}$$</p>
