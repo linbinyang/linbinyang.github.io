@@ -101,7 +101,7 @@
 <tr>
 <td style="text-align:center">Basic</td>
 <td><em>The data is modelled using a straight line. Use <strong>Least Square Error</strong> to compute optimal.</em>  $$J(w,b) = \frac{1}{2m} \sum\limits_{i=1}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2 $$ <em>where</em> $$f_{w,b}(x^{(i)}) = wx^{(i)} + b$$</td>
-<td><em>The probability of some obtained event that is represented as a linear function of a combination of predictor variables.</em>  Add sigmod curve to linear regression and compute optimal using <strong>maximum likelihood</strong>. $$f_{w,b}(x^{(i)}) = sigmoid(wx^{(i)} + b)$$ $$ J(f_{\mathbf{w},b}(\mathbf{x}^{(i)}), y) =\begin{cases}-log(f_{\mathbf{w},b}( \mathbf{x}^{(i)})),,,y=1\-log( 1 - f_{\mathbf{w},b}( \mathbf{x}^{(i)})),,,y=0\\end{cases}$$</td>
+<td><em>The probability of some obtained event that is represented as a linear function of a combination of predictor variables.</em>  Add sigmod curve to linear regression and compute optimal using <strong>maximum likelihood</strong>. $$f_{w,b}(x^{(i)}) = sigmoid(wx^{(i)} + b)$$ $$ J(f_{\mathbf{w},b}(\mathbf{x}^{(i)}), y) =\begin{cases} -log(f_{\mathbf{w},b}( \mathbf{x}^{(i)})),,,y=1\-log( 1 - f_{\mathbf{w},b}( \mathbf{x}^{(i)})),,,y=0\ \end{cases}$$</td>
 </tr>
 <tr>
 <td style="text-align:center">Linear relationship between dependent and independent varibales</td>
@@ -130,7 +130,7 @@
 <p>$$\frac{d}{db}J(w, b) = \frac{1}{m}\sum_{i=0}^{m-1}-y*\frac{1}{f_{w,b}(x^{(i)})} * \frac{df}{db} +(1-y)*\frac{1}{1-f_{w,b}(x^{(i)})} * \frac{df}{db}$$</p>
 <p>$$ = \frac{1}{m} \sum_{i=0}^{m-1} y - f$$</p>
 <!-- raw HTML omitted -->
-<p>When training, we first start with randomized $w$ and $b$ and for each iteration we update the $w$,$b$ with learing rate $\alpha$:</p>
+<p>When training, we first start with randomized \(w\) and $b$ and for each iteration we update the \(w\),\(b\) with learing rate \(\alpha\:</p>
 <p>$$w = w - \alpha * \frac{dJ}{dw}$$</p>
 <p>$$b = b - \alpha * \frac{dJ}{db}$$</p>
 <p>until converging to the global minimum. The methods is called <strong>Batch Gradient Descent</strong>, however when the size of dataset reaches to a certain level, the cost of computing gradient descent would be too high. So we here we could use <strong>Stochastic Gradient Descent</strong>, which means instead of using the whole dataset to compute, we randomly pick a subset to do gradient computing for each iterration. <!-- raw HTML omitted -->Note that the size of the subset is important, if the size is too small, it would be hard for the model to converge.<!-- raw HTML omitted --></p>
@@ -157,7 +157,7 @@
 </tbody>
 </table>
 <p>In machine learning, feature scaling refers to putting the feature values into the same range. Scaling is extremely important for the algorithms like logistic regression, because somehow it could help the algorthm to quickly capture the feature of dataset and hopefully make gradient descent process run faster. On the other hand, some rule-based algorithms like decision trees are not affected by feature scaling.</p>
-<p>In <strong>normalization</strong>, we map the minimum feature value to 0 and the maximum to 1. Hence, the feature values are mapped into the $[0,1]$ range:
+<p>In <strong>normalization</strong>, we map the minimum feature value to 0 and the maximum to 1. Hence, the feature values are mapped into the \([0,1]\) range:
 $$z = \frac{x - min(x)}{max(x) - min(x)}$$</p>
 <p>In <strong>standardization</strong>, we don&rsquo;t enforce the data into a definite range. Instead, we transform to have a mean of 0 and a standard deviation of 1:</p>
 <p>$$z = \frac{x - \mu}{\sigma}$$</p>
